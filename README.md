@@ -22,12 +22,7 @@ I created this to fill the void after Zooom/2 was abandoned by the original deve
 
 This tool requires [Hammerspoon](https://www.hammerspoon.org/) to be installed and running.
 
-The easiest thing to do is paste this in:
-
-```
-mkdir -p ~/.hammerspoon/Spoons
-git clone https://github.com/dbalatero/SkyRocket.spoon.git ~/.hammerspoon/Spoons/SkyRocket.spoon
-```
+After downloading, copy the unzipped folder to ~/.hammerspoon/Spoons/. Make sure to name the folder "SkyRocket.spoon".
 
 ## Usage
 
