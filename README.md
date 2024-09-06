@@ -1,7 +1,7 @@
 # 🌄 🚀 SkyRocket.spoon
 
 
-Starting with version 1.0.3, windows can be resizes all four directions.
+Starting with version 1.0.3, windows can be resized all four directions.
 
 
 Below you find the original description by dbalatero:
