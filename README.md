@@ -19,6 +19,8 @@ Alternatively, you can simply run the following command from the Terminal:
 
 mkdir -p ~/.hammerspoon/Spoons && git clone https://github.com/franzbu/SkyRocket.spoon.git ~/.hammerspoon/Spoons/SkyRocket.spoon```
 
+```
+
 ## Usage
 
 Once you've installed it, add this to your `~/.hammerspoon/init.lua` file:
