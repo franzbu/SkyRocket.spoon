@@ -13,7 +13,7 @@ This tool requires [Hammerspoon](https://www.hammerspoon.org/) to be installed a
 
 To install SkyRocket.spoon, after downloading and unzipping, move the folder to ~/.hammerspoon/Spoons and make sure the name of the folder is 'SkyRocket.spoon'. 
 
-Alternatively, you can simply run the following command from the Terminal:
+Alternatively, you can simply run the following terminal command:
 
 ```lua
 
