@@ -3,18 +3,7 @@
 
 Starting with version 1.0.3, windows can be resized all four directions.
 
-
-Below you find the original description by dbalatero:
-
-This Hammerspoon tool lets you **resize** and **move** windows by clicking + dragging them while holding down modifier keys. 
-
-This attempts to emulate such things as:
-
-* BetterTouchTool resize/move functions
-* Coderage Software's abandoned Zooom/2 software
-* Linux desktop move/resize hot keys
-
-I created this to fill the void after Zooom/2 was abandoned by the original developer.
+This Hammerspoon Spoon lets you **resize** and **move** windows by clicking + dragging them while holding down modifier keys. 
 
 <img alt="SkyRocket move and resize demo" src="https://github.com/dbalatero/SkyRocket.spoon/raw/master/doc/demo.gif" />
 
@@ -77,4 +66,4 @@ sky = SkyRocket:new({
 
 ## Thanks
 
-I took initial inspiration from [this gist](https://gist.github.com/kizzx2/e542fa74b80b7563045a) by @kizzx2, and heavily modified it to be packaged up in this Spoon. I also came up with a different technique for resizing to address the low frame-rate when attempting to resize in real time.
+There is a variety of tools to resize (and move) windows on macOS using the mouse and a modifier key. None have satisfied me, be it for the lack of fluency or functional limitations. The tool SkyRocket (v1.0.2) by dbalatero, who ingeniously uses a transparent canvas for addressing the already mentioned lack of fluency of other tools, came close to what I wanted. For me dbalatero's tool only lacked to ability to resize windows all four directions. Therefore, I have extended his tool with the functionality to achieve exactly that. Huge thanks to dbalatero for laying the groundwork. 
