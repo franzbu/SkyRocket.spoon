@@ -6,16 +6,18 @@ end
 local SkyRocket = {}
 
 SkyRocket.author = "David Balatero <d@balatero.com>"
+SkyRocket.extension = "fb <csaa6335@gmail.com>"
 SkyRocket.homepage = "https://github.com/dbalatero/SkyRocket.spoon"
 SkyRocket.license = "MIT"
 SkyRocket.name = "SkyRocket"
-SkyRocket.version = "1.0.2"
+SkyRocket.version = "1.0.2ex"
 SkyRocket.spoonPath = scriptPath()
 
 local dragTypes = {
   move = 1,
   resize = 2,
 }
+
 
 local function tableToMap(table)
   local map = {}
@@ -27,8 +29,9 @@ local function tableToMap(table)
   return map
 end
 
+
 local function createResizeCanvas(alpha)
-  local canvas = hs.canvas.new{}
+  local canvas = hs.canvas.new {}
 
   canvas:insertElement(
     {
@@ -44,6 +47,7 @@ local function createResizeCanvas(alpha)
   return canvas
 end
 
+
 local function getWindowUnderMouse()
   -- Invoke `hs.application` because `hs.window.orderedWindows()` doesn't do it
   -- and breaks itself
@@ -56,6 +60,7 @@ local function getWindowUnderMouse()
     return my_screen == w:screen() and my_pos:inside(w:frame())
   end)
 end
+
 
 -- Usage:
 --   resizer = SkyRocket:new({
@@ -76,6 +81,7 @@ local function buttonNameToEventType(name, optionName)
   error(optionName .. ': only "left" and "right" mouse button supported, got ' .. name)
 end
 
+
 function SkyRocket:new(options)
   options = options or {}
 
@@ -84,10 +90,10 @@ function SkyRocket:new(options)
     dragging = false,
     dragType = nil,
     moveStartMouseEvent = buttonNameToEventType(options.moveMouseButton or 'left', 'moveMouseButton'),
-    moveModifiers = options.moveModifiers or {'cmd', 'shift'},
+    moveModifiers = options.moveModifiers or { 'cmd', 'shift' },
     windowCanvas = createResizeCanvas(options.opacity or 0.3),
     resizeStartMouseEvent = buttonNameToEventType(options.resizeMouseButton or 'left', 'resizeMouseButton'),
-    resizeModifiers = options.resizeModifiers or {'ctrl', 'shift'},
+    resizeModifiers = options.resizeModifiers or { 'ctrl', 'shift' },
     targetWindow = nil,
   }
 
@@ -150,21 +156,55 @@ function SkyRocket:handleDrag()
 
     if self:isMoving() then
       local current = self.windowCanvas:topLeft()
-
       self.windowCanvas:topLeft({
         x = current.x + dx,
         y = current.y + dy,
       })
-
       return true
     elseif self:isResizing() then
       local currentSize = self.windowCanvas:size()
 
-      self.windowCanvas:size({
-        w = currentSize.w + dx,
-        h = currentSize.h + dy
-      })
-
+      if l and u then -- top right
+        local current = self.windowCanvas:topLeft()
+        self.windowCanvas:topLeft({
+          x = current.x + dx,
+          y = current.y + dy,
+        })
+        self.windowCanvas:size({
+          w = currentSize.w - dx,
+          h = currentSize.h - dy
+        })
+      elseif not l and u then -- top left
+        local current = self.windowCanvas:topLeft()
+        self.windowCanvas:topLeft({
+          x = current.x,
+          y = current.y + dy,
+        })
+        self.windowCanvas:size({
+          w = currentSize.w + dx,
+          h = currentSize.h - dy
+        })
+      elseif not l and not u then -- bottom right
+        local current = self.windowCanvas:topLeft()
+        self.windowCanvas:topLeft({
+          x = current.x,
+          y = current.y,
+        })
+        self.windowCanvas:size({
+          w = currentSize.w + dx,
+          h = currentSize.h + dy
+        })
+      elseif l and not u then -- bottom left
+        local current = self.windowCanvas:topLeft()
+        self.windowCanvas:topLeft({
+          x = current.x + dx,
+          y = current.y,
+        })
+        self.windowCanvas:size({
+          w = currentSize.w - dx,
+          h = currentSize.h + dy
+        })
+      end
       return true
     else
       return nil
@@ -192,31 +232,72 @@ function SkyRocket:resizeCanvasToWindow()
 
   self.windowCanvas:topLeft({ x = position.x, y = position.y })
   self.windowCanvas:size({ w = size.w, h = size.h })
+
+  -- determine in which quarter of the window the mouse pointer is; cannot happen in handleDrag() because it can only be called once at beginning of resizing (otherwise upper left increase of window size turns into lower right decrease)
+  local point = self.windowCanvas:topLeft()
+  local frame = self.windowCanvas:frame()
+  local x = point.x
+  local y = point.y
+  local w = frame.w
+  local h = frame.h
+
+  mp = hs.mouse.absolutePosition()
+  if w + x - mp.x > w / 2 then
+    l = true -- mouse pointer in left half of window
+  else
+    l = false
+  end
+  if h + y - mp.y > h / 2 then
+    u = true -- mouse pointer in upper half of window
+  else
+    u = false
+  end
 end
 
 function SkyRocket:resizeWindowToCanvas()
   if not self.targetWindow then return end
   if not self.windowCanvas then return end
 
-  local size = self.windowCanvas:size()
-  self.targetWindow:setSize(size.w, size.h)
+  local frame = self.windowCanvas:frame()
+  local point = self.windowCanvas:topLeft()
+
+  -- window is not allowed to extend past left and right margins of screen
+  local win = hs.window.focusedWindow()
+  local max = win:screen():frame() -- max.x = 0; max.y = 0; max.w = screen width; max.h = screen height
+  
+  local xNew = point.x
+  local wNew = frame.w
+  if point.x < 0 then
+    wNew = frame.w + point.x
+    xNew = 0
+  elseif point.x + frame.w > max.w then
+    wNew = max.w - point.x
+    xNew = max.w - wNew
+  end
+
+  -- if window is resized past start of menu bar, height of window is corrected accordingly
+  local maxWithMB = win:screen():fullFrame()
+  heightMB = maxWithMB.h - max.h -- height menu bar
+  local yNew = point.y
+  local hNew = frame.h
+  
+  if point.y < heightMB then
+    hNew = frame.h + point.y - heightMB
+    yNew = heightMB
+  end
+
+  self.targetWindow:move(hs.geometry.new(xNew, yNew, wNew, hNew), nil, false, 0)
+  -- if desired, add code to activate window
 end
 
 function SkyRocket:moveWindowToCanvas()
   if not self.targetWindow then return end
   if not self.windowCanvas then return end
 
-  local frame = self.windowCanvas:frame()
   local point = self.windowCanvas:topLeft()
+  local frame = self.windowCanvas:frame()
 
-  local moveTo = {
-    x = point.x,
-    y = point.y,
-    w = frame.w,
-    h = frame.h,
-  }
-
-  self.targetWindow:move(hs.geometry.new(moveTo), nil, false, 0)
+  self.targetWindow:move(hs.geometry.new(point.x, point.y, frame.w, frame.h), nil, false, 0)
 end
 
 function SkyRocket:handleClick()
