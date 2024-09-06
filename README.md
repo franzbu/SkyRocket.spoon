@@ -5,6 +5,8 @@ Starting with version 1.0.3, windows can be resized all four directions.
 
 This Hammerspoon Spoon lets you **resize** and **move** windows by clicking + dragging them while holding down modifier keys. 
 
+The below animated GIF doesn't capture the mouse pointer correctly, in real life the mouse pointer moves along with moving and resizing the window as it is supposed to.
+
 <img alt="SkyRocket move and resize demo" src="https://github.com/franzbu/SkyRocket.spoon/blob/master/doc/SkyRocket.gif" />
 
 ## Installation
