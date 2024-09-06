@@ -49,6 +49,29 @@ sky = SkyRocket:new({
 ```
 I can recommend using CapsLock as modifier key (with Karabiner Elements CapsLock can be reconfigured that if pressed alone it acts as CapsLock and if used in combination with another key or a mouse button it acts as modifier key). I have set it up to move a window using CapsLock and the left mouse button and to resize a window using CapsLock and the right mouse button.
 
+In that case add the following lines to your `~/.hammerspoon/init.lua` file:
+
+```lua
+local SkyRocket = hs.loadSpoon("SkyRocket")
+
+sky = SkyRocket:new({
+  -- Opacity of resize canvas
+  opacity = 0.3,
+
+  -- Which modifiers to hold to move a window?
+  moveModifiers = {'shift', 'ctrl', 'alt', 'cmd'},
+
+  -- Which mouse button to hold to move a window?
+  moveMouseButton = 'left',
+
+  -- Which modifiers to hold to resize a window?
+  resizeModifiers = {'shift', 'ctrl', 'alt', 'cmd'},
+
+  -- Which mouse button to hold to resize a window?
+  resizeMouseButton = 'right',
+})
+```
+
 
 ### Moving
 
