@@ -30,7 +30,7 @@ Once you've installed it, add this to your `~/.hammerspoon/init.lua` file:
 ```lua
 local SkyRocket = hs.loadSpoon("SkyRocket")
 
-sky = SkyRocket:new({
+SkyRocket:new({
   -- Opacity of resize canvas
   opacity = 0.3,
 
