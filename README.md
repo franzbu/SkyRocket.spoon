@@ -1,7 +1,7 @@
 # 🌄 🚀 SkyRocket.spoon
 
 
-You can resize windows on your screen in any direction you like by clicking and dragging. Try it out and you'll never look back.
+You can move and resize windows on your screen in any direction you like by clicking at any point within the window and dragging. Try it out and you'll never look back.
 
 The below animated GIF doesn't capture the mouse pointer correctly; in real life the mouse pointer moves along with moving and resizing the window as expected. Nevertheless, the animation still shows what you can do with this tool.
 
