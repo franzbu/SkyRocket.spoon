@@ -1,9 +1,7 @@
 # 🌄 🚀 SkyRocket.spoon
 
 
-Starting with version 1.0.3, windows can be resized all four directions.
-
-This Hammerspoon Spoon lets you **resize** and **move** windows by clicking + dragging them while holding down modifier keys. 
+You can resize windows on your screen in any direction you like by clicking and dragging. Try it out and you'll never look back.
 
 The below animated GIF doesn't capture the mouse pointer correctly; in real life the mouse pointer moves along with moving and resizing the window as expected. Nevertheless, the animation still shows what you can do with this tool.
 
