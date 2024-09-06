@@ -1,6 +1,8 @@
 # 🌄 🚀 SkyRocket.spoon
 
-This Hammerspoon tool lets you **resize** and **move** windows by clicking + dragging them while holding down modifier keys.
+
+
+This Hammerspoon tool lets you **resize** and **move** windows by clicking + dragging them while holding down modifier keys. Starting with version 1.0.3, windows can be resizes all four directions.
 
 This attempts to emulate such things as:
 
