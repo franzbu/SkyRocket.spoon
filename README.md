@@ -1,6 +1,6 @@
 # 🌄 🚀 SkyRocket.spoon
 
-There is a variety of tools to resize (and move) windows on macOS using the mouse and a modifier key without having to painstakingly get a hold of the edge of the window. None of these tools have satisfied me, be it for the lack of fluency or functional limitations. 
+There is a variety of tools to resize and move windows on macOS using the mouse and a modifier key, saving the time of having to painstakingly get a hold of the edge of the window. None of these tools have satisfied me, be it for the lack of fluency or functional limitations. 
 
 The original tool SkyRocket (v1.0.2) by dbalatero, which ingeniously uses a transparent canvas for addressing the already mentioned lack of fluency other tools are hampered with, came close to what I wanted. balatero's tool only lacked to ability to resize windows all directions (it can resize windows down/right). Therefore, I have extended his tool with the functionality to do exactly that. Huge thanks to dbalatero for laying the groundwork. 
 
