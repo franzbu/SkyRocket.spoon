@@ -95,13 +95,13 @@ This horizontal-only and vertical-only resizing has been enabled because there a
 
 As an additional feature, at the very center of the window there is an erea, the size of which depends on the size of the margin, where you can move the window by pressing the same modifier key and the same mouse button as for resizing. If the margin is set to 0, also this area becomes non-existent.
 
-### Disabling move/resize for apps
+### Disabling move/resize for applications
 
-You can disable move/resize for any app by adding it to the `disabledApps` option:
+You can disable move/resize for any application by adding it to the `disabledApps` option:
 
 ```lua
 SkyRocket:new({
-  -- apps that cannot be resized:
+  -- Applications that cannot be resized:
   disabledApps = {"Alacritty"},
 })
 ```
