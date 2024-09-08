@@ -24,7 +24,7 @@ mkdir -p ~/.hammerspoon/Spoons && git clone https://github.com/franzbu/SkyRocket
 
 ## Usage
 
-Once you've installed it, add this to your `~/.hammerspoon/init.lua` file:
+Once you've installed SkyRocket, add this to your `~/.hammerspoon/init.lua` file:
 
 ```lua
 local SkyRocket = hs.loadSpoon("SkyRocket")
