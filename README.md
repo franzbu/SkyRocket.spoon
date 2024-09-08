@@ -101,7 +101,7 @@ You can disable move/resize for any app by adding it to the `disabledApps` optio
 
 ```lua
 SkyRocket:new({
-  -- For example, if you run your terminal in full-screen mode you might not want to accidentally resize it:
+  -- apps that cannot be resized:
   disabledApps = {"Alacritty"},
 })
 ```
