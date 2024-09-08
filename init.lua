@@ -63,7 +63,8 @@ end
 
 
 -- Usage:
---   resizer = SkyRocket:new({
+--     resizer = SkyRocket:new({
+--     margin = 30,
 --     opacity = 0.3,
 --     moveModifiers = {'alt'},
 --     moveMouseButton = 'left',
@@ -165,14 +166,14 @@ function SkyRocket:handleDrag()
     elseif self:isResizing() then
       local currentSize = self.windowCanvas:size()
       local current = self.windowCanvas:topLeft()
-       
-      
+
+
       if margin == 0 then -- adjust margin
         m = 0
       else
         m = margin / 2
       end
-      
+
       if mH <= -m and mV <= m and mV > -m then -- 9 o'clock
         self.windowCanvas:topLeft({
           x = current.x + dx,
@@ -182,7 +183,7 @@ function SkyRocket:handleDrag()
           w = currentSize.w - dx,
           h = currentSize.h
         })
-      elseif mH <= -m and mV <= -m then -- 10:30 
+      elseif mH <= -m and mV <= -m then -- 10:30
         self.windowCanvas:topLeft({
           x = current.x + dx,
           y = current.y + dy,
@@ -191,7 +192,7 @@ function SkyRocket:handleDrag()
           w = currentSize.w - dx,
           h = currentSize.h - dy
         })
-      elseif mH > -m and mH <= m and mV <= -m  then -- 12 o'clock
+      elseif mH > -m and mH <= m and mV <= -m then  -- 12 o'clock
         self.windowCanvas:topLeft({
           x = current.x,
           y = current.y + dy,
@@ -200,7 +201,7 @@ function SkyRocket:handleDrag()
           w = currentSize.w,
           h = currentSize.h - dy
         })
-      elseif mH > m and mV <= -m then -- 1:30 
+      elseif mH > m and mV <= -m then -- 1:30
         self.windowCanvas:topLeft({
           x = current.x,
           y = current.y + dy,
@@ -251,7 +252,6 @@ function SkyRocket:handleDrag()
           x = current.x + dx,
           y = current.y + dy,
         })
-
       end
       return true
     else
@@ -259,7 +259,6 @@ function SkyRocket:handleDrag()
     end
   end
 end
-
 
 function SkyRocket:handleCancel()
   return function()
@@ -282,7 +281,8 @@ function SkyRocket:resizeCanvasToWindow()
   self.windowCanvas:topLeft({ x = position.x, y = position.y })
   self.windowCanvas:size({ w = size.w, h = size.h })
 
-  -- determine in which quarter of the window the mouse pointer is; cannot happen in handleDrag() because it can only be called once at beginning of resizing (otherwise upper left increase of window size turns into lower right decrease)
+  -- determine in which part of the window the mouse pointer is when moving/resizing starts,
+  -- this cannot happen in handleDrag() because this can only be done once at the beginning of each resizing (otherwise upper left increase of window size turns into lower right decrease)
   local point = self.windowCanvas:topLeft()
   local frame = self.windowCanvas:frame()
   local x = point.x
@@ -292,15 +292,13 @@ function SkyRocket:resizeCanvasToWindow()
 
   local mousePos = hs.mouse.absolutePosition()
   local mx = w + x - mousePos.x -- distance between right border of window and cursor
-  local dmah = w / 2 - mx -- absolute delta: mid window - cursor
-  mH = dmah * 100 / w -- delta from mid window: -50(=left border of window) to 50 (left border)
+  local dmah = w / 2 - mx       -- absolute delta: mid window - cursor
+  mH = dmah * 100 / w           -- delta from mid window: -50(left border of window) to 50 (left border)
 
   local my = h + y - mousePos.y
-  local dmav = h /2 - my
-  mV = dmav * 100 / h -- delta from mid window in %: from -50(=top border of window) to 50
-
+  local dmav = h / 2 - my
+  mV = dmav * 100 / h -- delta from mid window in %: from -50(=top border of window) to 50 (bottom border)
 end
-
 
 function SkyRocket:resizeWindowToCanvas()
   if not self.targetWindow then return end
@@ -312,7 +310,7 @@ function SkyRocket:resizeWindowToCanvas()
   -- window is not allowed to extend past left and right margins of screen
   local win = hs.window.focusedWindow()
   local max = win:screen():frame() -- max.x = 0; max.y = 0; max.w = screen width; max.h = screen height
-  
+
   local xNew = point.x
   local wNew = frame.w
   if point.x < 0 then
@@ -328,7 +326,7 @@ function SkyRocket:resizeWindowToCanvas()
   heightMB = maxWithMB.h - max.h -- height menu bar
   local yNew = point.y
   local hNew = frame.h
-  
+
   if point.y < heightMB then
     hNew = frame.h + point.y - heightMB
     yNew = heightMB
