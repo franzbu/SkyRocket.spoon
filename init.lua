@@ -182,7 +182,7 @@ function SkyRocket:handleDrag()
           w = currentSize.w - dx,
           h = currentSize.h
         })
-      elseif mH <= -m and mV <= -m then -- 10:30 -- and mV > -50 + m
+      elseif mH <= -m and mV <= -m then -- 10:30 
         self.windowCanvas:topLeft({
           x = current.x + dx,
           y = current.y + dy,
@@ -200,7 +200,7 @@ function SkyRocket:handleDrag()
           w = currentSize.w,
           h = currentSize.h - dy
         })
-      elseif mH > m and mV <= -m then -- 1:30 -- and mV > 50-m
+      elseif mH > m and mV <= -m then -- 1:30 
         self.windowCanvas:topLeft({
           x = current.x,
           y = current.y + dy,
