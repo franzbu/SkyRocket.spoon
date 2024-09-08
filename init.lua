@@ -174,7 +174,6 @@ function SkyRocket:handleDrag()
       end
       
       if mH <= -m and mV <= m and mV > -m then -- 9 o'clock
-        --hs.alert.show("9")                
         self.windowCanvas:topLeft({
           x = current.x + dx,
           y = current.y,
@@ -184,7 +183,6 @@ function SkyRocket:handleDrag()
           h = currentSize.h
         })
       elseif mH <= -m and mV <= -m then -- 10:30 -- and mV > -50 + m
-        --hs.alert.show("10:30")                
         self.windowCanvas:topLeft({
           x = current.x + dx,
           y = current.y + dy,
@@ -194,7 +192,6 @@ function SkyRocket:handleDrag()
           h = currentSize.h - dy
         })
       elseif mH > -m and mH <= m and mV <= -m  then -- 12 o'clock
-        --hs.alert.show("12")                
         self.windowCanvas:topLeft({
           x = current.x,
           y = current.y + dy,
@@ -204,7 +201,6 @@ function SkyRocket:handleDrag()
           h = currentSize.h - dy
         })
       elseif mH > m and mV <= -m then -- 1:30 -- and mV > 50-m
-        --hs.alert.show("1:30")                
         self.windowCanvas:topLeft({
           x = current.x,
           y = current.y + dy,
@@ -214,7 +210,6 @@ function SkyRocket:handleDrag()
           h = currentSize.h - dy
         })
       elseif mH > m and mV > -m and mV <= m then -- 3 o'clock
-        --hs.alert.show("3")                
         self.windowCanvas:topLeft({
           x = current.x,
           y = current.y,
@@ -224,7 +219,6 @@ function SkyRocket:handleDrag()
           h = currentSize.h
         })
       elseif mH > m and mV > m then -- 4:30
-        --hs.alert.show("4:30")                
         self.windowCanvas:topLeft({
           x = current.x,
           y = current.y,
@@ -234,7 +228,6 @@ function SkyRocket:handleDrag()
           h = currentSize.h + dy
         })
       elseif mV > m and mH <= m and mH > -m then -- 6 o'clock
-        --hs.alert.show("6")                
         self.windowCanvas:topLeft({
           x = current.x,
           y = current.y,
@@ -244,7 +237,6 @@ function SkyRocket:handleDrag()
           h = currentSize.h + dy
         })
       elseif mH <= -m and mV > m then -- 7:30
-        hs.alert.show("7:30")                
         self.windowCanvas:topLeft({
           x = current.x + dx,
           y = current.y,
