@@ -4,7 +4,7 @@
 
 # v1.0.3
 
-* Windows can be resized all four directions.
+* Windows can be resized all directions.
 
 # v1.0.2
 
