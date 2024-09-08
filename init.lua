@@ -6,8 +6,8 @@ end
 local SkyRocket = {}
 
 SkyRocket.author = "David Balatero <d@balatero.com>"
-SkyRocket.extension = "fb <csaa6335@gmail.com>"
-SkyRocket.homepage = "https://github.com/franzbu/SkyRocket.spoon"
+SkyRocket.extension = "Franz B. <csaa6335@gmail.com>"
+SkyRocket.homepage = "https://github.com/dbalatero/SkyRocket.spoon"
 SkyRocket.license = "MIT"
 SkyRocket.name = "SkyRocket"
 SkyRocket.version = "1.0.3"
@@ -65,10 +65,10 @@ end
 -- Usage:
 --   resizer = SkyRocket:new({
 --     opacity = 0.3,
---     moveModifiers = {'cmd', 'shift'},
+--     moveModifiers = {'alt'},
 --     moveMouseButton = 'left',
---     resizeModifiers = {'ctrl', 'shift'}
---     resizeMouseButton = 'left',
+--     resizeModifiers = {'alt'},
+--     resizeMouseButton = 'right',
 --   })
 --
 local function buttonNameToEventType(name, optionName)
@@ -84,6 +84,7 @@ end
 
 function SkyRocket:new(options)
   options = options or {}
+  margin = options.margin
 
   local resizer = {
     disabledApps = tableToMap(options.disabledApps or {}),
@@ -163,47 +164,102 @@ function SkyRocket:handleDrag()
       return true
     elseif self:isResizing() then
       local currentSize = self.windowCanvas:size()
+      local current = self.windowCanvas:topLeft()
+       
+      
+      if margin == 0 then -- adjust margin
+        m = 0
+      else
+        m = margin / 2
+      end
+      
+      if mH <= -m and mV <= m and mV > -m then -- 9 o'clock
+        --hs.alert.show("9")                
+        self.windowCanvas:topLeft({
+          x = current.x + dx,
+          y = current.y,
+        })
+        self.windowCanvas:size({
+          w = currentSize.w - dx,
+          h = currentSize.h
+        })
+      elseif mH <= -m and mV <= -m then -- 10:30 -- and mV > -50 + m
+        --hs.alert.show("10:30")                
+        self.windowCanvas:topLeft({
+          x = current.x + dx,
+          y = current.y + dy,
+        })
+        self.windowCanvas:size({
+          w = currentSize.w - dx,
+          h = currentSize.h - dy
+        })
+      elseif mH > -m and mH <= m and mV <= -m  then -- 12 o'clock
+        --hs.alert.show("12")                
+        self.windowCanvas:topLeft({
+          x = current.x,
+          y = current.y + dy,
+        })
+        self.windowCanvas:size({
+          w = currentSize.w,
+          h = currentSize.h - dy
+        })
+      elseif mH > m and mV <= -m then -- 1:30 -- and mV > 50-m
+        --hs.alert.show("1:30")                
+        self.windowCanvas:topLeft({
+          x = current.x,
+          y = current.y + dy,
+        })
+        self.windowCanvas:size({
+          w = currentSize.w + dx,
+          h = currentSize.h - dy
+        })
+      elseif mH > m and mV > -m and mV <= m then -- 3 o'clock
+        --hs.alert.show("3")                
+        self.windowCanvas:topLeft({
+          x = current.x,
+          y = current.y,
+        })
+        self.windowCanvas:size({
+          w = currentSize.w + dx,
+          h = currentSize.h
+        })
+      elseif mH > m and mV > m then -- 4:30
+        --hs.alert.show("4:30")                
+        self.windowCanvas:topLeft({
+          x = current.x,
+          y = current.y,
+        })
+        self.windowCanvas:size({
+          w = currentSize.w + dx,
+          h = currentSize.h + dy
+        })
+      elseif mV > m and mH <= m and mH > -m then -- 6 o'clock
+        --hs.alert.show("6")                
+        self.windowCanvas:topLeft({
+          x = current.x,
+          y = current.y,
+        })
+        self.windowCanvas:size({
+          w = currentSize.w,
+          h = currentSize.h + dy
+        })
+      elseif mH <= -m and mV > m then -- 7:30
+        hs.alert.show("7:30")                
+        self.windowCanvas:topLeft({
+          x = current.x + dx,
+          y = current.y,
+        })
+        self.windowCanvas:size({
+          w = currentSize.w - dx,
+          h = currentSize.h + dy,
+        })
+      else
+        local current = self.windowCanvas:topLeft()
+        self.windowCanvas:topLeft({
+          x = current.x + dx,
+          y = current.y + dy,
+        })
 
-      if l and u then -- top right
-        local current = self.windowCanvas:topLeft()
-        self.windowCanvas:topLeft({
-          x = current.x + dx,
-          y = current.y + dy,
-        })
-        self.windowCanvas:size({
-          w = currentSize.w - dx,
-          h = currentSize.h - dy
-        })
-      elseif not l and u then -- top left
-        local current = self.windowCanvas:topLeft()
-        self.windowCanvas:topLeft({
-          x = current.x,
-          y = current.y + dy,
-        })
-        self.windowCanvas:size({
-          w = currentSize.w + dx,
-          h = currentSize.h - dy
-        })
-      elseif not l and not u then -- bottom right
-        local current = self.windowCanvas:topLeft()
-        self.windowCanvas:topLeft({
-          x = current.x,
-          y = current.y,
-        })
-        self.windowCanvas:size({
-          w = currentSize.w + dx,
-          h = currentSize.h + dy
-        })
-      elseif l and not u then -- bottom left
-        local current = self.windowCanvas:topLeft()
-        self.windowCanvas:topLeft({
-          x = current.x + dx,
-          y = current.y,
-        })
-        self.windowCanvas:size({
-          w = currentSize.w - dx,
-          h = currentSize.h + dy
-        })
       end
       return true
     else
@@ -211,6 +267,7 @@ function SkyRocket:handleDrag()
     end
   end
 end
+
 
 function SkyRocket:handleCancel()
   return function()
@@ -241,18 +298,17 @@ function SkyRocket:resizeCanvasToWindow()
   local w = frame.w
   local h = frame.h
 
-  mp = hs.mouse.absolutePosition()
-  if w + x - mp.x > w / 2 then
-    l = true -- mouse pointer in left half of window
-  else
-    l = false
-  end
-  if h + y - mp.y > h / 2 then
-    u = true -- mouse pointer in upper half of window
-  else
-    u = false
-  end
+  local mousePos = hs.mouse.absolutePosition()
+  local mx = w + x - mousePos.x -- distance between right border of window and cursor
+  local dmah = w / 2 - mx -- absolute delta: mid window - cursor
+  mH = dmah * 100 / w -- delta from mid window: -50(=left border of window) to 50 (left border)
+
+  local my = h + y - mousePos.y
+  local dmav = h /2 - my
+  mV = dmav * 100 / h -- delta from mid window in %: from -50(=top border of window) to 50
+
 end
+
 
 function SkyRocket:resizeWindowToCanvas()
   if not self.targetWindow then return end

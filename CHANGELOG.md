@@ -1,3 +1,7 @@
+# v1.0.4
+
+* The resizing of windows can optionally be done solely horizontally and vertically, depending in which area of the window the resizing prozess is started.
+
 # v1.0.3
 
 * Windows can be resized all four directions.

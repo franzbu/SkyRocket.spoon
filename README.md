@@ -2,7 +2,9 @@
 
 There is a variety of tools to resize and move windows on macOS using the mouse and a modifier key, saving the time of having to painstakingly get a hold of the edge of the window. None of these tools have satisfied me, be it for the lack of fluency or functional limitations. 
 
-The original tool SkyRocket (v1.0.2) by dbalatero, which ingeniously uses a transparent canvas for addressing the already mentioned lack of fluency other tools are hampered with, came close to what I wanted. balatero's tool only lacked the ability to resize windows all directions (it can resize windows down/right). Therefore, I have extended his tool with the functionality to do exactly that. A huge thanks to dbalatero for laying the groundwork. 
+The original tool SkyRocket (v1.0.2) by dbalatero, which ingeniously uses a transparent canvas for addressing the already mentioned lack of fluency other tools are hampered with, came close to what I wanted. balatero's tool only lacked the ability to resize windows all directions. Therefore, I have extended his tool with the functionality to do exactly that. Optionally, a margin can be defined where the window is limited to resizing only horizontally and vertically. Read more below.
+
+A huge thanks to dbalatero for laying the groundwork. 
 
 This animated GIF doesn't capture the mouse cursor correctly; in real life the cursor moves along with moving and resizing the window as expected. Nevertheless, the animation still shows what you can do with this tool.
 
@@ -57,11 +59,13 @@ sky = SkyRocket:new({
   -- Opacity of resize canvas
   opacity = 0.3,
 
-  -- Which modifiers to hold to move a window?
-  moveModifiers = {'shift', 'ctrl', 'alt', 'cmd'},
+  -- How much space (in percent) in the middle of each of the four window-margins do you want to reserve for limiting 
+  -- resizing windows to horizontally and vertically? 0 disables this function, 100 disables diagonal resizing.
+  margin = 30,
 
-  -- Which mouse button to hold to move a window?
-  moveMouseButton = 'left',
+  -- Which modifiers to hold to move a window?
+  -- moveModifiers = {'ctrl', 'shift'},
+  moveModifiers = {'alt'},
 
   -- Which modifiers to hold to resize a window?
   resizeModifiers = {'shift', 'ctrl', 'alt', 'cmd'},
@@ -79,6 +83,12 @@ To move a window, hold your `moveModifiers` down, then click `moveMouseButton` a
 ### Resizing
 
 To resize a window, hold your `resizeModifiers` down, then click `resizeMouseButton` and drag a window.
+
+To resize windows only horizontally and vertically, enable this functionality by adjusting the option 'margin' to your liking: 30 means that 30 percent of the window (around the middle of each side) is reserved for horizontal and vertical only resizing.
+
+This has been enabled because there are use scenarios where such a fine tuned resizing is desirable, while this at the same time is not a loss as placing the cursor in the remainig parts of the window enables you to resize your windows any way you want.
+
+On a side note: at the very center of the window there is an erea, the size of which depends on the size of the margin, where you can now move the window by pressing the same modifier key and the same mouse button as for resizing.
 
 ### Disabling move/resize for apps
 
