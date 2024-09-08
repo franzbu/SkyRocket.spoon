@@ -100,7 +100,7 @@ As an additional feature, at the very center of the window there is an erea, the
 You can disable move/resize for any app by adding it to the `disabledApps` option:
 
 ```lua
-sky = SkyRocket:new({
+SkyRocket:new({
   -- For example, if you run your terminal in full-screen mode you might not
   -- to accidentally resize it:
   disabledApps = {"Alacritty"},
