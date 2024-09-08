@@ -2,7 +2,7 @@
 
 There is a variety of tools to resize and move windows on macOS using the mouse and a modifier key, saving the time of having to painstakingly get a hold of edges and corners of windows. However, none of these tools have satisfied me, be it for the lack of fluency or for functional limitations. 
 
-The original tool by dbalatero, which ingeniously uses a transparent canvas for addressing the already mentioned lack of fluency other tools are hampered with, came close to what I wanted. What I found limiting, though, was the limitation of balatero's tool to resize windows only down/right. Therefore, I have extended his tool with the the possibility to resize windows all directions. Aditionally, an area can be defined where windows are limited to being resized only horizontally and vertically, i.e., four directions. A huge thanks goes to dbalatero for his excellent tool. 
+The original tool 'SkyRocket' by dbalatero, which ingeniously uses a transparent canvas for addressing the already mentioned lack of fluency other tools are hampered with, came close to what I wanted. What I found limiting, though, was the limitation of balatero's tool to resize windows only down/right. Therefore, I have extended his tool with the the possibility to resize windows all directions. Aditionally, an area can be defined where windows are limited to being resized only horizontally and vertically, i.e., four directions. A huge thanks goes to dbalatero for his excellent tool. 
 
 The animated GIF below doesn't capture the mouse cursor correctly; in real life the cursor moves along with moving and resizing the window as expected. Nevertheless, the animation still shows what you can do with this tool.
 
