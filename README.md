@@ -57,7 +57,7 @@ In case of using CapsLock as hyper key, add the following lines to your `~/.hamm
 ```lua
 local SkyRocket = hs.loadSpoon("SkyRocket")
 
-sky = SkyRocket:new({
+SkyRocket:new({
   -- Opacity of resize canvas
   opacity = 0.3,
 
