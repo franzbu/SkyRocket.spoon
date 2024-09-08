@@ -38,16 +38,16 @@ SkyRocket:new({
   margin = 30,
 
   -- Which modifiers to hold to move a window?
-  moveModifiers = {'cmd', 'shift'},
+  moveModifiers = {'alt'},
 
   -- Which mouse button to hold to move a window?
   moveMouseButton = 'left',
 
   -- Which modifiers to hold to resize a window?
-  resizeModifiers = {'ctrl', 'shift'},
+  resizeModifiers = {'alt'},
 
   -- Which mouse button to hold to resize a window?
-  resizeMouseButton = 'left',
+  resizeMouseButton = 'right',
 })
 ```
 I can recommend using CapsLock as hyper key (with Karabiner Elements, CapsLock can be reconfigured that if pressed alone it acts as CapsLock and if used in combination with another key or a mouse button it acts as modifier key). I have set up Hammerspoon to move a window pressing CapsLock in combination with the left mouse button and to resize a window pressing CapsLock in combination with the right mouse button.
