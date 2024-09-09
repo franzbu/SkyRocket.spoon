@@ -7,7 +7,7 @@ local SkyRocket = {}
 
 SkyRocket.author = "David Balatero <d@balatero.com>"
 SkyRocket.extension = "Franz B. <csaa6335@gmail.com>"
-SkyRocket.homepage = "https://github.com/dbalatero/SkyRocket.spoon"
+SkyRocket.homepage = "https://github.com/franzbu/SkyRocket.spoon"
 SkyRocket.license = "MIT"
 SkyRocket.name = "SkyRocket"
 SkyRocket.version = "1.0.4"
