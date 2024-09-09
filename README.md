@@ -104,10 +104,6 @@ SkyRocket:new({
   -- Opacity of resize canvas
   opacity = 0.3,
 
-  -- How much space (in percent) in the middle of each of the four borders of the windows do you want to reserve for limiting 
-  -- resizing windows only horizontally and vertically? 0 disables this function, 100 disables diagonal resizing.
-  margin = 30,
-
   -- ...
 
   -- Applications that cannot be resized:
