@@ -108,9 +108,9 @@ SkyRocket:new({
   -- resizing windows only horizontally and vertically? 0 disables this function, 100 disables diagonal resizing.
   margin = 30,
 
--- ...
+  -- ...
 
--- Applications that cannot be resized:
+  -- Applications that cannot be resized:
   disabledApps = {"Alacritty"},
 })
 ```
