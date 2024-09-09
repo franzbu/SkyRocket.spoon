@@ -338,6 +338,7 @@ function SkyRocket:moveWindowToCanvas()
   local frame = self.windowCanvas:frame()
 
   self.targetWindow:move(hs.geometry.new(point.x, point.y, frame.w, frame.h), nil, false, 0)
+  getWindowUnderMouse():focus()
 end
 
 function SkyRocket:handleClick()
