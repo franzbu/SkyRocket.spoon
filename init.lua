@@ -327,7 +327,7 @@ function SkyRocket:resizeWindowToCanvas()
   end
 
   self.targetWindow:move(hs.geometry.new(xNew, yNew, wNew, hNew), nil, false, 0)
-  -- if desired, add code to activate window
+  getWindowUnderMouse():focus()
 end
 
 function SkyRocket:moveWindowToCanvas()
