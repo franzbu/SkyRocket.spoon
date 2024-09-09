@@ -167,7 +167,7 @@ function SkyRocket:handleDrag()
       local currentSize = self.windowCanvas:size()
       local current = self.windowCanvas:topLeft()
 
-      m = margin / 2
+      local m = margin / 2
       if mH <= -m and mV <= m and mV > -m then -- 9 o'clock
         self.windowCanvas:topLeft({
           x = current.x + dx,
