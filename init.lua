@@ -292,6 +292,7 @@ function SkyRocket:resizeCanvasToWindow()
   local my = h + y - mousePos.y
   local dmav = h / 2 - my
   mV = dmav * 100 / h -- delta from mid window in %: from -50(=top border of window) to 50 (bottom border)
+  getWindowUnderMouse():focus()
 end
 
 function SkyRocket:resizeWindowToCanvas()
