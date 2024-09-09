@@ -85,7 +85,7 @@ end
 
 function SkyRocket:new(options)
   options = options or {}
-  margin = options.margin
+  margin = options.margin or 30
 
   local resizer = {
     disabledApps = tableToMap(options.disabledApps or {}),
