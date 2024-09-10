@@ -105,7 +105,7 @@ This horizontal-only and vertical-only resizing has been enabled because there a
 
 As an additional feature, at the very center of the window there is an erea (M), the size of which depends on the size of the margin for horizontal-only and vertical-only resizing, where you can move the window by pressing the same modifier key and the same mouse button as for resizing. If the margin is set to 0, also this area becomes non-existent. In other words, you can move as well as resize the window using the same modifier and mouse button combination.
 
-### Disabling move/resize for applications
+### Disabling moving and resizing for certain applications
 
 You can disable move/resize for any application by adding it to the `disabledApps` option:
 
