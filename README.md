@@ -97,7 +97,7 @@ This horizontal-only and vertical-only resizing has been enabled because there a
  +---+---+---+
  | ↖ | ↑ | ↗ |
  +---+---+---+
- | ← | M | → |
+ | ← | M | →|
  +---+---+---+
  | ↙ | ↓ | ↘ |
  +---+---+---+
