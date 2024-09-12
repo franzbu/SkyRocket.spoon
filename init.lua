@@ -10,7 +10,7 @@ SkyRocket.extension = "Franz B. <csaa6335@gmail.com>"
 SkyRocket.homepage = "https://github.com/franzbu/SkyRocket.spoon"
 SkyRocket.license = "MIT"
 SkyRocket.name = "SkyRocket"
-SkyRocket.version = "1.0.5"
+SkyRocket.version = "1.0.4"
 SkyRocket.spoonPath = scriptPath()
 
 local dragTypes = {
@@ -292,7 +292,6 @@ function SkyRocket:resizeCanvasToWindow()
   local my = h + y - mousePos.y
   local dmav = h / 2 - my
   mV = dmav * 100 / h -- delta from mid window in %: from -50(=top border of window) to 50 (bottom border)
-  getWindowUnderMouse():focus()
 end
 
 function SkyRocket:resizeWindowToCanvas()
@@ -328,7 +327,7 @@ function SkyRocket:resizeWindowToCanvas()
   end
 
   self.targetWindow:move(hs.geometry.new(xNew, yNew, wNew, hNew), nil, false, 0)
-  getWindowUnderMouse():focus()
+  self.targetWindow:focus()
 end
 
 function SkyRocket:moveWindowToCanvas()
@@ -339,7 +338,7 @@ function SkyRocket:moveWindowToCanvas()
   local frame = self.windowCanvas:frame()
 
   self.targetWindow:move(hs.geometry.new(point.x, point.y, frame.w, frame.h), nil, false, 0)
-  getWindowUnderMouse():focus()
+  self.targetWindow:focus()
 end
 
 function SkyRocket:handleClick()
@@ -353,7 +352,7 @@ function SkyRocket:handleClick()
     local isResizing = eventType == self.resizeStartMouseEvent and flags:containExactly(self.resizeModifiers)
 
     if isMoving or isResizing then
-      local currentWindow = getWindowUnderMouse()
+      currentWindow = getWindowUnderMouse()
 
       if self.disabledApps[currentWindow:application():name()] then
         return nil
@@ -367,8 +366,6 @@ function SkyRocket:handleClick()
       else
         self.dragType = dragTypes.resize
       end
-
-      getWindowUnderMouse():focus()
 
       self:resizeCanvasToWindow()
       self.windowCanvas:show()
