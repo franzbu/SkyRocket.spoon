@@ -1,6 +1,6 @@
 # v1.0.5
 
-* Windows gets focus.
+* Window gets focus when moved or resized.
 
 # v1.0.4
 
