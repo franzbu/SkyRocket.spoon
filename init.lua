@@ -9,7 +9,7 @@ LattinMellon.author = "Franz B. <csaa6335@gmail.com>"
 LattinMellon.homepage = "https://github.com/franzbu/LattinMellon.spoon"
 LattinMellon.license = "MIT"
 LattinMellon.name = "LattinMellon"
-LattinMellon.version = "0.7"
+LattinMellon.version = "0.7.1"
 LattinMellon.spoonPath = scriptPath()
 
 local dragTypes = {
