@@ -61,15 +61,6 @@ function LattinMellon:new(options)
   TATmodifier = options.TATmodifier or { 'alt', 'ctrl', 'cmd' }
   SATmodifier = options.SATmodifier or { 'alt', 'ctrl', 'cmd', 'shift' } -- hyper key
 
-
-  --fb
-  --OMmodifier = {}
-  --for i,v in pairs(OMmodifier2) do
-  --  OMmodifier[v] = true
-  --end
-
-
-
   local resizer = {
     disabledApps = tableToMap(options.disabledApps or {}),
     dragging = false,
