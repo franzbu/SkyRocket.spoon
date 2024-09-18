@@ -212,21 +212,21 @@ function LattinMellon:doMagic() -- automatic positioning and adjustments, for ex
 
   if movedNotResized then
     -- window moved past left screen border
-    if tableComp(flags,self.moveModifiers) then
+    if tablesEqual(flags,self.moveModifiers) then
       gridX = 2
       gridY = 2
-    elseif tableComp(flags, OMmodifier) then
+    elseif tablesEqual(flags, OMmodifier) then
       gridX = 3
       gridY = 3
-    elseif tableComp(flags, TATmodifier) then
+    elseif tablesEqual(flags, TATmodifier) then
       gridX = 4
       gridY = 4
-    elseif tableComp(flags, SATmodifier) then
+    elseif tablesEqual(flags, SATmodifier) then
       gridX = 5
       gridY = 5
     end
 
-    if tableComp(flags, self.moveModifiers) then
+    if tablesEqual(flags, self.moveModifiers) then
       if point.x < 0 and hs.mouse.getRelativePosition().y + sumdy < max.h + heightMB then -- left and not bottom
         if math.abs(point.x) < wNew / 10 then -- moved past border by 10 or less percent: move window as is back within boundaries of screen
           xNew = 0
@@ -306,7 +306,7 @@ function LattinMellon:doMagic() -- automatic positioning and adjustments, for ex
           end
         end
       end
-    elseif tableComp(flags, OMmodifier) then
+    elseif tablesEqual(flags, OMmodifier) then
       if point.x < 0 and hs.mouse.getRelativePosition().y + sumdy < max.h + heightMB then -- left and not bottom
         if math.abs(point.x) < wNew / 10 then -- moved past border by 10 or less percent: move window as is back within boundaries of screen
           xNew = 0
@@ -428,24 +428,24 @@ function LattinMellon:handleClick()
 
     flags = {}
     
----[[ -- flagsOrg looks like this: {'alt' true}; the following loop turns it into a table comparable to the one initiated in Hammerspoon's init.lua
+  ---[[ -- flagsOrg looks like this: {'alt' true}; the following loop turns it into a table comparable to the one initiated in Hammerspoon's init.lua
     k = 1
     for i,v in pairs(flagsOrg) do
       flags[k] = i
       k = k + 1
     end
---]]
+  --]]
 
----[[
+  ---[[
     
     -- local isResizing = eventType == self.resizeStartMouseEvent and flags:containExactly(self.resizeModifiers)
     -- local isMoving = eventType == self.moveStartMouseEvent and (flags:containExactly(self.moveModifiers) or flags:containExactly(OMmodifier) or flags:containExactly(TATmodifier) or flags:containExactly(SATmodifier))
-    local isMoving = eventType == self.moveStartMouseEvent and (tableComp(flags, self.moveModifiers) or tableComp(flags, OMmodifier) or tableComp(flags, TATmodifier) or tableComp(flags, SATmodifier))
-    local isResizing = eventType == self.resizeStartMouseEvent and (tableComp(flags, self.moveModifiers) or tableComp(flags, OMmodifier) or tableComp(flags, TATmodifier) or tableComp(flags, SATmodifier))
---]]
+    local isMoving = eventType == self.moveStartMouseEvent and (tablesEqual(flags, self.moveModifiers) or tablesEqual(flags, OMmodifier) or tablesEqual(flags, TATmodifier) or tablesEqual(flags, SATmodifier))
+    local isResizing = eventType == self.resizeStartMouseEvent and (tablesEqual(flags, self.moveModifiers) or tablesEqual(flags, OMmodifier) or tablesEqual(flags, TATmodifier) or tablesEqual(flags, SATmodifier))
+  --]]
 
    --[[
-    if tableComp(flags, OMmodifier) then
+    if tablesEqual(flags, OMmodifier) then
       print "true---------"
     else
       print "false----------"
@@ -460,7 +460,7 @@ function LattinMellon:handleClick()
       print(i,v)
     end
 
-    if tableComp(OMmodifier, flags) then
+    if tablesEqual(OMmodifier, flags) then
       print("same")
     else
       print("not same")
@@ -477,7 +477,6 @@ function LattinMellon:handleClick()
       self.dragging = true
       self.targetWindow = currentWindow
       
-
       if isMoving then
         self.dragType = dragTypes.move
       else
@@ -518,12 +517,12 @@ end
 
 -- helper function(s)
 
-function tableComp(a, b) --algorithm is O(n log n), due to table growth.
+function tablesEqual(a, b) --algorithm is O(n log n), due to table growth.
   if #a ~= #b then
     return false
   end -- unequal length of tables
 
-  --[[
+--[[
   print("--a--")
   for i = 1, 2 do
     print(a[i])
@@ -533,7 +532,7 @@ function tableComp(a, b) --algorithm is O(n log n), due to table growth.
   for i = 1, 2 do
     print(b[i])
   end
-  --]]
+--]]
 
   table.sort(a)
   table.sort(b)
@@ -543,8 +542,6 @@ function tableComp(a, b) --algorithm is O(n log n), due to table growth.
       return false
     end
   end
-
-
 
   return true
 end
