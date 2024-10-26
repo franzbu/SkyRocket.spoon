@@ -1,3 +1,7 @@
+# v1.0.6
+
+* Code cleanup.
+
 # v1.0.5
 
 * Window gets focus when moved or resized.
