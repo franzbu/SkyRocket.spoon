@@ -1,4 +1,6 @@
-# 🌄 🚀 SkyRocket.spoon
+# DEPRECATED: Use SpaceHammer instead
+
+#SkyRocket.spoon
 
 On macOS, there is a variety of tools to resize and move windows using the mouse and a modifier key, saving the time of having to painstakingly get a hold of edges and corners of windows. However, none of these tools have satisfied me, be it for the lack of fluency or for functional limitations. 
 
