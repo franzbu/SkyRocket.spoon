@@ -1,4 +1,4 @@
-# DEPRECATED: Use SpaceHammer instead
+# DEPRECATED: Use EnhancedSpaces instead
 
 #SkyRocket.spoon
 
